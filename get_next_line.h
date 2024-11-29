@@ -6,7 +6,7 @@
 /*   By: artperez <artperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:25:26 by artperez          #+#    #+#             */
-/*   Updated: 2024/11/27 09:50:14 by artperez         ###   ########.fr       */
+/*   Updated: 2024/11/29 11:41:23 by artperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ char	*ft_getline(int fd, char *buffer);
 char	*ft_getline_n(char *buffer);
 char	*ft_strjoin(char *s1, char *s2);
 void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_free(char *buffer, char *temp_buf);
 
 #endif
