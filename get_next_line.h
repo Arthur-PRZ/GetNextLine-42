@@ -22,14 +22,14 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 3
-#endif
+# endif
 
 char	*get_next_line(int fd);
 int		ft_strlen(char *str, int a);
 char	*ft_strcpy(char *dest, char *src);
 int		ft_strchr(char *str, char c);
-char	*ft_getline(int fd, char *buffer);
-char	*ft_getline_n(char *buffer);
+char	*ft_readline(int fd, char *buffer);
+char	*ft_getlin(char *buffer);
 char	*ft_strjoin(char *s1, char *s2);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_free(char *buffer, char *temp_buf);

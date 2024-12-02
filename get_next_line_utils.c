@@ -14,7 +14,7 @@
 
 char	*ft_strcpy(char *dest, char *src)
 {
-	int i;
+	int	i;
 	
 	i = 0;
 	while (src[i] != '\0' && (i == 0 || src[i - 1] != '\n'))
@@ -67,7 +67,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*str;
 	int		i;
 	int		a;
-//	ecrit la ligne + nimporte quoi
+
 	i = 0;
 	a = 0;
 	if (s1 == NULL || s2 == NULL)

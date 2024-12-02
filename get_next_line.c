@@ -12,14 +12,12 @@
 
 #include "get_next_line.h"
 
-char	*ft_getline(int fd, char *buffer)
+char	*ft_readline(int fd, char *buffer)
 {
 	char		*temp_buf;
 	ssize_t		readbytes;
-	//char		*tmp;
 
 	readbytes = 1;
-	//tmp = NULL;
 	temp_buf = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (temp_buf == NULL)
 		return (NULL);
@@ -27,10 +25,7 @@ char	*ft_getline(int fd, char *buffer)
 	{	
 		buffer = ft_calloc(1, sizeof(char));
 		if (buffer == NULL)
-		{
-			free(temp_buf);
 			return (NULL);
-		}
 	}
 	while (readbytes > 0)
 	{
@@ -41,14 +36,8 @@ char	*ft_getline(int fd, char *buffer)
 			free(buffer);
 			return (NULL);
 		}
-		else if (readbytes == 0)
-		{	
-			free(temp_buf);
-			return (buffer);
-		}
-		//tmp = buffer;
+		temp_buf[readbytes] = '\0';
 		buffer = ft_free(buffer, temp_buf);
-		//free(tmp);
 		if (!buffer)
 		{
     		free(temp_buf);
@@ -97,7 +86,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (tab);
 }
 
-char	*ft_getline_n(char *buffer)
+char	*ft_getline(char *buffer)
 {
 	char	*line;
 	
@@ -116,18 +105,20 @@ char	*update_buffer(char *buffer)
 
 	i = 0;
 	j = 0;	
-	if (!buffer[i])
-		return (NULL);
 	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;
-	new_buffer = ft_calloc((ft_strlen(buffer + i + 1, 1) + 2), sizeof(char));
+	if (!buffer[i])
+	{
+		free(buffer);
+		return (NULL);
+	}
+	new_buffer = ft_calloc((ft_strlen(buffer + i + 0, 1) + 2), sizeof(char));
 	if (new_buffer == NULL)
 		return (NULL);
 	i++;
-	while (buffer[i])
+	while (buffer[i + j])
 	{
-		new_buffer[j] = buffer[i];
-		i++;
+		new_buffer[j] = buffer[i + j];
 		j++;
 	}
 	new_buffer[j] = '\0';
@@ -142,10 +133,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = ft_getline(fd, buffer);
+	buffer = ft_readline(fd, buffer);
 	if (buffer == NULL || ft_strlen(buffer, 0) == 0)
 		return (NULL);
-	line = ft_getline_n(buffer);
+	line = ft_getline(buffer);
 	if (line == NULL)
 	{	
 		free(buffer);
@@ -155,22 +146,22 @@ char	*get_next_line(int fd)
 	buffer = update_buffer(buffer);
 	return (line);
 }
-
+/*
 int	main()
 {
 	int	file;
 	char *str;
 	int	i = 0;
 	
-	//file = open("/home/Arthur/42/Exo42/gnl/test.txt", O_RDONLY);
-	file = open("/home/artperez/Stud/exercices/get_next_line/test.txt", O_RDONLY);
+	file = open("/home/Arthur/42/Exo/get_next_line/test.txt", O_RDONLY);
+	//file = open("/home/artperez/Stud/exercices/get_next_line/test.txt", O_RDONLY);
 	if (file == -1)
 	{
 		printf("t'as pas reussi a ouvrir le fichier nullos");
 		return (0);
 	}
 	str = malloc(10000 * sizeof(char));
-	while (i < 2)
+	while (i < 100)
 	{
 		str = get_next_line(file);
 		printf("%s", str);
@@ -182,4 +173,4 @@ int	main()
 	//printf("%s", str);
 	free(str);
 	close(file);
-}
+}*/
