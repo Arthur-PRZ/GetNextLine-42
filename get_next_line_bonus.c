@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: artperez <artperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:36:09 by artperez          #+#    #+#             */
-/*   Updated: 2024/12/05 13:48:19 by artperez         ###   ########.fr       */
+/*   Updated: 2024/12/05 13:50:02 by artperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_readline(int fd, char *buffer)
 {
@@ -109,25 +109,25 @@ char	*update_buffer(char *buffer)
 char	*get_next_line(int fd)
 {
 	char			*line;
-	static char		*buffer;
+	static char		*buffer[4096];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = ft_readline(fd, buffer);
-	if (ft_strlen(buffer, 0) == 0)
+	buffer[fd] = ft_readline(fd, buffer[fd]);
+	if (ft_strlen(buffer[fd], 0) == 0)
 	{
-		free(buffer);
-		buffer = NULL;
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 		return (NULL);
 	}
-	line = ft_getline(buffer);
+	line = ft_getline(buffer[fd]);
 	if (line == NULL)
 	{
-		free(buffer);
-		buffer = NULL;
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 		return (NULL);
 	}
-	buffer = update_buffer(buffer);
+	buffer[fd] = update_buffer(buffer[fd]);
 	return (line);
 }
 /*
