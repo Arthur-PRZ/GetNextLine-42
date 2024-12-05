@@ -6,7 +6,7 @@
 /*   By: artperez <artperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:43:34 by artperez          #+#    #+#             */
-/*   Updated: 2024/11/29 13:54:24 by artperez         ###   ########.fr       */
+/*   Updated: 2024/12/04 09:44:14 by artperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,28 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*tab;
+	size_t	i;
+
+	i = 0;
+	if (nmemb != 0 && size > SIZE_MAX / nmemb)
+		return (NULL);
+	tab = malloc(nmemb * size);
+	if (tab == 0)
+	{
+		tab = NULL;
+		return (tab);
+	}
+	while (i < nmemb * size)
+	{
+		((char *)tab)[i] = 0;
+		i++;
+	}
+	return (tab);
+}
+
 int	ft_strlen(char *str, int a)
 {
 	int	i;
@@ -38,7 +60,7 @@ int	ft_strlen(char *str, int a)
 		while (str[i] != '\0')
 			i++;
 	}
-	else
+	else if (a == 0)
 	{
 		while (str[i] != '\0' && (i == 0 || str[i - 1] != '\n'))
 			i++;
@@ -70,7 +92,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	a = 0;
-	if (s1 == NULL || s2 == NULL)
+	if (s1 == NULL && s2 == NULL)
 		return (NULL);
 	str = ft_calloc(ft_strlen(s2, 1) + ft_strlen(s1, 1) + 1, sizeof(char));
 	if (str == NULL)
