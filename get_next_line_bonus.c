@@ -6,7 +6,7 @@
 /*   By: artperez <artperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:36:09 by artperez          #+#    #+#             */
-/*   Updated: 2024/12/05 13:50:02 by artperez         ###   ########.fr       */
+/*   Updated: 2024/12/12 09:07:48 by artperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ int	main()
 	int	i = 98;
 	
 	//file = open("/home/Arthur/42/Exo/get_next_line/test.txt", O_RDONLY);
-	file = open("/home/artperez/Stud/exercices/get_next_line/test.txt", O_RDONLY);
 	if (file == -1)
 	{
 		printf("t'as pas reussi a ouvrir le fichier nullos");

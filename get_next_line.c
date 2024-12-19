@@ -6,7 +6,7 @@
 /*   By: artperez <artperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:36:09 by artperez          #+#    #+#             */
-/*   Updated: 2024/12/05 13:48:19 by artperez         ###   ########.fr       */
+/*   Updated: 2024/12/16 09:17:21 by artperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,21 +135,20 @@ int	main()
 {
 	int	file;
 	char *str;
-	int	i = 98;
+	int	i = 100;
 	
-	//file = open("/home/Arthur/42/Exo/get_next_line/test.txt", O_RDONLY);
-	file = open("/home/artperez/Stud/exercices/get_next_line/test.txt", O_RDONLY);
+	file = open("test.txt", O_RDONLY);
 	if (file == -1)
 	{
 		printf("t'as pas reussi a ouvrir le fichier nullos");
 		return (0);
 	}
-	while (i < 100)
+	while (i != 0)
 	{
 		str = get_next_line(file);
 		printf("%s", str);
 		free(str);
-		i++;
+		i--;
 	}
 //	free(str);
 //	str = get_next_line(file);
